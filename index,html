@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./src/style.css">
+    <title>Document</title>
+</head>
+<body> 
+    <h1 id="title">Game</h1>
+    <div id="grid">
+        <div class="case" id="case1"></div>
+        <div class="case" id="case2"></div>
+        <div class="case" id="case3"></div>
+        <div class="case" id="case4"></div>
+        <div class="case" id="case5"></div>
+        <div class="case" id="case6"></div>
+        <div class="case" id="case7"></div>
+        <div class="case" id="case8"></div>
+        <div class="case" id="case9"></div>
+    </div>
+    <div id="text">
+        <p>ces au tour du joueur <span id="joueur">1</span></p>
+        <p>score joueur un <span id="score1">0</span></p>
+        <p>score joueur deux <span id="score2">0</span></p>
+        <span id="nul">Maths nulls 0</span>
+    </div>
+    <script src="./src/app.js"></script>
+    <noscript>Votre naviguateur ne peut executer du code JavaScript.</noscript>
+</body>
+</html>

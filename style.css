@@ -1,0 +1,122 @@
+let cases = [...document.getElementsByClassName("case")];
+let joueur = document.getElementById("joueur");
+let score1 = document.getElementById("score1");
+let score2 = document.getElementById("score2");
+let nul = document.getElementById("nul");
+
+const global = {
+  joueurEnCour: 0,
+  scoreJ1: 0,
+  scoreJ2: 0,
+  mathsNul: 0,
+  case1: 0,
+  case2: 0,
+  case3: 0,
+  case4: 0,
+  case5: 0,
+  case6: 0,
+  case7: 0,
+  case8: 0,
+  case9: 0,
+};
+const resetMyCase = () => {
+  (global.joueurEnCour = 1),
+    (global.case1 = 0),
+    (global.case2 = 0),
+    (global.case3 = 0),
+    (global.case4 = 0),
+    (global.case5 = 0),
+    (global.case6 = 0),
+    (global.case7 = 0),
+    (global.case8 = 0),
+    (global.case9 = 0);
+};
+const Victoire = (e) => {
+  if (
+    (global.case1 == global.case2 &&
+      global.case2 == global.case3 &&
+      global.case1 > 0) ||
+    (global.case1 == global.case4 &&
+      global.case4 == global.case7 &&
+      global.case1 > 0) ||
+    (global.case1 == global.case5 &&
+      global.case5 == global.case9 &&
+      global.case1 > 0) ||
+    (global.case2 == global.case5 &&
+      global.case5 == global.case8 &&
+      global.case2 > 0) ||
+    (global.case3 == global.case6 &&
+      global.case6 == global.case9 &&
+      global.case3 > 0) ||
+    (global.case4 == global.case5 &&
+      global.case5 == global.case6 &&
+      global.case4 > 0) ||
+    (global.case7 == global.case8 &&
+      global.case8 == global.case9 &&
+      global.case7 > 0)
+  ) {
+    return true;
+  } else if (
+    global.case1 != 0 &&
+    global.case2 != 0 &&
+    global.case3 != 0 &&
+    global.case4 != 0 &&
+    global.case5 != 0 &&
+    global.case6 != 0 &&
+    global.case7 != 0 &&
+    global.case8 != 0 &&
+    global.case9 != 0
+  ) {
+    return null;
+  } else {
+    return false;
+  }
+};
+
+const clicker = (e) => {
+  let idCase = e.target.id;
+
+  if (global[idCase] != 0) {
+    return;
+  }
+
+  global[idCase] = global.joueurEnCour;
+  let ifvicoire = Victoire();
+
+  if (ifvicoire == true) {
+    alert("le ganient est le joueur " + global.joueurEnCour);
+    if (global.joueurEnCour == 1) {
+      global.scoreJ1++;
+      score1.textContent = global.scoreJ1;
+    } else {
+      global.scoreJ2++;
+      score2.textContent = global.scoreJ2;
+    }
+    resetMyCase();
+    cases.forEach((e) => {
+      e.textContent = "";
+    });
+  } else if (ifvicoire === null) {
+    alert("Maths null");
+    global.mathsNul++;
+    nul.textContent = "Maths nuls :" + global.mathsNul;
+    joueur.textContent = "1";
+    resetMyCase();
+    cases.forEach((e) => {
+      e.textContent = "";
+    });
+  } else if (ifvicoire == false) {
+    if (global.joueurEnCour == 1) {
+      e.target.textContent = "x";
+      global.joueurEnCour = 2;
+      joueur.textContent = "2";
+    } else {
+      e.target.textContent = "o";
+      global.joueurEnCour = 1;
+      joueur.textContent = "1";
+    }
+  }
+};
+cases.forEach((e) => {
+  e.addEventListener("click", clicker);
+});
